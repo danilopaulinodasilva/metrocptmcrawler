@@ -39,7 +39,17 @@ let cptmUrl = 'http://www.cptm.sp.gov.br/Pages/Home.aspx';
                 
                 if(cptmElement.querySelector('div span.nome_linha').innerText == "JADE") { cptmJson.line = "13 Jade"; cptmJson.name = "Linha 13-Jade"; cptmJson.number = 13; }
 
-                cptmJson.status = cptmElement.querySelector('div span:nth-child(2)').innerText;
+                if(cptmElement.querySelector('div span:nth-child(2)').innerText != "Operação Normal") {
+
+                    cptmJson.status = cptmElement.querySelector('div span:nth-child(2)').innerText;
+                    cptmJson.reason = cptmElement.querySelector('div span:nth-child(2)').getAttribute("data-original-title");
+                
+                } else {
+
+                    cptmJson.status = "Operação Normal";
+
+                }
+
                 cptmJson.lastupdate = document.querySelector('#destaques > div.container > div.col-sm-12.col-md-8.situacao_linhas > div > div.ultima_atualizacao').innerText.replace("| Atualizado em: ","");
             }
             catch (exception){
@@ -96,7 +106,16 @@ exports.getLineStatus = function(req,res) {
                     if(cptmElement.querySelector('div span.nome_linha').innerText == "JADE") { cptmJson.line = "13 Jade"; cptmJson.name = "Linha 13-Jade"; cptmJson.number = 13; }
 
 
-                    cptmJson.status = cptmElement.querySelector('div span:nth-child(2)').innerText;
+                    if(cptmElement.querySelector('div span:nth-child(2)').innerText != "Operação Normal") {
+
+                        cptmJson.status = cptmElement.querySelector('div span:nth-child(2)').getAttribute("data-original-title");
+                    
+                    } else {
+
+                        cptmJson.status = "Operação Normal";
+
+                    }
+
                     cptmJson.lastupdate = document.querySelector('#destaques > div.container > div.col-sm-12.col-md-8.situacao_linhas > div > div.ultima_atualizacao').innerText.replace("| Atualizado em: ","");
                 }
                 catch (exception){
