@@ -61,11 +61,11 @@ let metroUrl = 'http://www.metro.sp.gov.br/Sistemas/direto-do-metro-via4/diretod
     // console.log(metroData);
     res.send(metroData);
 
-    const used = process.memoryUsage();
+    // const used = process.memoryUsage();
     
-    for (let key in used) {
-    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
-    }
+    // for (let key in used) {
+    // console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
+    // }
 
 })();
 
@@ -147,4 +147,4 @@ exports.getLineStatus = function(req,res) {
     
     })();
     
-    };
+};
