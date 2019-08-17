@@ -1,4 +1,4 @@
-// Chamo o Middleware
+// Chamo o Middleware, que vai ficar rodando sozinho sempre
 require('./middlewares/MetroMiddleware.js');
 
 const bodyParser = require('body-parser');
@@ -9,9 +9,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
-
-// Executo o setInterval aqui
-intervalStatusLinhas;
 
 app.use("/", express.static('public'));
 app.use('/metro', require('./routes/metro'));
