@@ -11,14 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "cheerio": "^1.0.0-rc.2",
-    "cron": "^1.7.1",
     "express": "^4.16.4",
     "jsdom": "^14.0.0",
-    "puppeteer": "^1.13.0",
     "store": "^2.0.12"
   },
-  "devDependencies": {
-    "dotenv": "^7.0.0"
-  }
+  "devDependencies": {}
 }
