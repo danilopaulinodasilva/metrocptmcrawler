@@ -1,5 +1,5 @@
-// Chamo o Middleware, que vai ficar rodando sozinho sempre
-require('./middlewares/MetroMiddleware.js');
+// Chamo o MetroAxiosMiddleware, que vai ficar rodando sozinho sempre
+require('./middlewares/MetroAxiosMiddleware.js');
 
 const bodyParser = require('body-parser');
 const express = require('express');

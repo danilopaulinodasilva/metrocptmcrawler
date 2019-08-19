@@ -1,5 +1,4 @@
 const store = require('store');
-const jsdom = require("jsdom");
 
 module.exports = {
     
