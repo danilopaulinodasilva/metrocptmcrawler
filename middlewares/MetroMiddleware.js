@@ -3,7 +3,7 @@ const axios = require("axios");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-// PEGO O CÓDIGO DO SITE DO METRO E ARMAZENO NO LOCALSTORAGE PARA SER RETUILIZADO DENTRO DA API
+// USANDO O AXIOS PEGO O CÓDIGO DO SITE DO METRO E ARMAZENO NO LOCALSTORAGE PARA SER RE-UTILIZADO DENTRO DA API
 
 function getStatusLinhasMetro(code) {
     

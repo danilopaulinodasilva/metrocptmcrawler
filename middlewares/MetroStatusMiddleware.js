@@ -23,9 +23,9 @@ module.exports = {
     
     all: () => {
 
-        var tudo = store.get('metrolinestatus');
+        // RETORNA TODOS STATUS QUE ESTÃO NO LOCALSTORAGE
 
-        return tudo;
+        return store.get('metrolinestatus');
         
     }
     
