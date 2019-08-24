@@ -10,7 +10,7 @@ function getStatusLinhasCptm(code) {
     
     // FAZ O GET DO CÓDIGO HTML NO SITE DO METRO
     
-    axios.get('http://www.cptm.sp.gov.br/Pages/Home.aspx', {headers: {'Content-Type':'text/plain'}})
+    axios.get('http://localhost/falhametro/cptm_com_falha.html', {headers: {'Content-Type':'text/plain'}})
     
     .then((res) => {
         
