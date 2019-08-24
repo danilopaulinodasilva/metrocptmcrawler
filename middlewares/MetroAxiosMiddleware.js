@@ -31,7 +31,9 @@ function getStatusLinhasMetro(code) {
                 "id": objArrLinhas[i].id,
                 "linha": objArrLinhas[i].linha,
                 "status": objArrLinhas[i].status,
-                "codigo": objArrLinhas[i].codigo
+                "mensagem": objArrLinhas[i].msgStatus,
+                "codigo": objArrLinhas[i].codigo,
+                "descricao": objArrLinhas[i].descricao
             })
         }
         

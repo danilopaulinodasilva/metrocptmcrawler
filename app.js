@@ -1,4 +1,4 @@
-// Chamo o MetroAxiosMiddleware, que vai ficar rodando sozinho sempre
+// CHAMO OS MIDDLEWARES QUE VÃO FICAR RODANDO SEMPRE NO SERVER
 require('./middlewares/MetroAxiosMiddleware.js');
 
 const bodyParser = require('body-parser');
@@ -14,6 +14,6 @@ app.use("/", express.static('public'));
 app.use('/metro', require('./routes/metro'));
 app.use('/cptm', require('./routes/cptm'));
 
-app.listen(3001, () => {
-  console.log("Server rodando na porta 3001");
+app.listen(5001, () => {
+  console.log("Server rodando na porta 5001");
 });
