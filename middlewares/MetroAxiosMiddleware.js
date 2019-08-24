@@ -36,6 +36,8 @@ function getStatusLinhasMetro(code) {
                 "descricao": objArrLinhas[i].descricao
             })
         }
+
+        // console.log(statusLinhasJSON);
         
         // ARMAZENA TODOS STATUS NO LOCALSTORAGE
 

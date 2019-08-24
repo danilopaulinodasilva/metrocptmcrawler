@@ -2,14 +2,15 @@ const store = require('store');
 const axios = require("axios");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const S = require('string');
 
-// USANDO O AXIOS PEGO O CÓDIGO DO SITE DO METRO E ARMAZENO NO LOCALSTORAGE PARA SER RE-UTILIZADO DENTRO DA API
+// USANDO O AXIOS PEGO O CÓDIGO DO SITE DA CPTM E ARMAZENO NO LOCALSTORAGE PARA SER RE-UTILIZADO DENTRO DA API
 
-function getStatusLinhasMetro(code) {
+function getStatusLinhasCptm(code) {
     
     // FAZ O GET DO CÓDIGO HTML NO SITE DO METRO
     
-    axios.get('http://www.metro.sp.gov.br/Sistemas/direto-do-metro-via4/diretodoMetroHome.aspx', {headers: {'Content-Type':'text/plain'}})
+    axios.get('http://www.cptm.sp.gov.br/Pages/Home.aspx', {headers: {'Content-Type':'text/plain'}})
     
     .then((res) => {
         
@@ -17,33 +18,37 @@ function getStatusLinhasMetro(code) {
         
         // USANDO O "PERIGOSO" EVAL É EXTRAÍDO O CÓDIGO HTML
 
-        // console.log(dom.window.diretoIframe.getElementsByTagName('script')[0].innerHTML)
-        eval(dom.window.diretoIframe.getElementsByTagName('script')[0].innerHTML);
+        eval(dom.window.destaques);
+        // console.log(dom.window.destaques.getElementsByClassName("situacao_linhas")[0].innerHTML);
+        // console.log(dom.window.destaques.getElementsByClassName("rubi")[0].getElementsByClassName("nome_linha")[0].innerHTML);
+        // console.log(dom.window.destaques.getElementsByClassName("col-xs-4").length);
 
         // CRIA O ARRAY VAZIO
 
         var statusLinhasJSON = [];
+        var divLinha = dom.window.destaques.getElementsByClassName("col-xs-4");
 
         // LOOP PARA ADICIONAR TODAS AS LINHAS NO ARRAY
         
-        for(i=0;i<objArrLinhas.length;i++) {
+        for(i=0;i<divLinha.length;i++) {
             statusLinhasJSON.push({
-                "id": objArrLinhas[i].id,
-                "linha": objArrLinhas[i].linha,
-                "status": objArrLinhas[i].status,
-                "mensagem": objArrLinhas[i].msgStatus,
-                "codigo": objArrLinhas[i].codigo,
-                "descricao": objArrLinhas[i].descricao
+                "linha": S(divLinha[i].getElementsByClassName("nome_linha")[0].innerHTML).capitalize().s,
+                "status": divLinha[i].getElementsByTagName("span")[1].innerHTML,
+                "mensagem": "",
+                "codigo": i+7,
+                "descricao": ""
             })
         }
         
+        // console.log(statusLinhasJSON);
+
         // ARMAZENA TODOS STATUS NO LOCALSTORAGE
 
-        store.set('metrolinestatus', statusLinhasJSON);
+        store.set('cptmlinestatus', statusLinhasJSON);
 
         // ARMAZENA EM UMA VARIAVEL TODOS STATUS PARA SER FILTRADO
 
-        var arrayAllStatus = store.get('metrolinestatus');
+        var arrayAllStatus = store.get('cptmlinestatus');
         
         // FAZ A PESQUISA DENTRO DO ARRAY
 
@@ -60,8 +65,8 @@ function getStatusLinhasMetro(code) {
         filterByLine(arrayAllStatus,code);
         
         // console.log("Passou 1 minuto, atualmente o status das linhas é:");
-        // console.log(typeof(store.get('metrolinestatus')));
-        // console.log(store.get('metrolinestatus'));
+        // console.log(typeof(store.get('cptmlinestatus')));
+        // console.log(store.get('cptmlinestatus'));
         // console.log(pog[1]);
         
     })
@@ -74,8 +79,8 @@ function getStatusLinhasMetro(code) {
 
 // DEFINE O INTERVALO DE 10 SEGUNDOS PARA CHAMAR O AXIOS
 
-setInterval(getStatusLinhasMetro,60000);
+setInterval(getStatusLinhasCptm,60000);
 
 // É NECESSÁRIO INICIAR A FUNÇÃO, DO CONTRÁRIO TEM QUE SE ESPERAR 10 SEGUNDOS PARA TER A PRIMEIRA RESPOSTA
 
-getStatusLinhasMetro();
+getStatusLinhasCptm();
