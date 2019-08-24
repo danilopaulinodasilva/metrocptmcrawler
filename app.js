@@ -1,7 +1,6 @@
 // CHAMO OS MIDDLEWARES QUE VÃO FICAR RODANDO SEMPRE NO SERVER
 require('./middlewares/MetroAxiosMiddleware.js');
 require('./middlewares/CptmAxiosMiddleware.js');
-// require('./middlewares/CtpmErroAxiosMiddleware.js');
 
 const bodyParser = require('body-parser');
 const express = require('express');
