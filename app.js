@@ -15,6 +15,6 @@ app.use("/", express.static('public'));
 app.use('/metro', require('./routes/metro'));
 app.use('/cptm', require('./routes/cptm'));
 
-app.listen(5001, () => {
-  console.log("Server rodando na porta 5001");
+app.listen(process.env.PORT || 8080, () => {
+  console.log(`Server rodando na porta ${process.env.PORT}`);
 });
